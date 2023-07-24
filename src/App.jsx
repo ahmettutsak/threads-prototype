@@ -25,19 +25,20 @@ function SampledSurface(props) {
       const minY = -1; // Minimum Y pozisyonu
       const maxY = 1; // Maksimum Y pozisyonu
   
-      for (let i = 0; i < 3000; i++) {
+      for (let i = 0; i < 6000; i++) {
         sampler.sample(_position, _normal);
         _normal.add(_position);
         const scl = Math.random() * (4 - 1) + 1;
-        dummy.position.copy(new Vector3(_position.x - 2.5, _position.y - 1, _position.z));
+        dummy.position.copy(new Vector3(_position.x - 3.5, _position.y - 1, _position.z));
         dummy.scale.copy(new Vector3(scl, scl, scl));
         dummy.lookAt(_normal);
         dummy.updateMatrix();
   
-        const heightValue = (_position.y - minY) / (maxY - minY);
+        const heightValue = ((_position.y) - minY) / (2);
         const colorValue = getColorFromHeight(heightValue);
         instance.current.setColorAt(i, colorValue);
         instance.current.castShadow = true;
+
   
         instance.current.setMatrixAt(i, dummy.matrix);
       }
@@ -49,11 +50,24 @@ function SampledSurface(props) {
   
   // Yardımcı fonksiyon: Yükseklik değerine göre renkleri hesaplayın
   function getColorFromHeight(heightValue) {
-    const hue = (3 - heightValue) * 0.1; // Renk geçişini 0.1 değeri üzerinden yapalım
-    const saturation = 1;
-    const lightness = 0.50;
-    const colorValue = new THREE.Color().setHSL(hue, saturation, lightness);
+    if(heightValue > 1){
+      const startColor = new THREE.Color("purple");
+    const endColor = new THREE.Color("red");
+    const colorValue = new THREE.Color().lerpColors(endColor, startColor, 1);
+    return colorValue
+    }
+    else if(heightValue < 0){
+    const startColor = new THREE.Color("purple");
+    const endColor = new THREE.Color("red");
+    const colorValue = new THREE.Color().lerpColors(endColor, startColor, 0);
     return colorValue;
+    }
+    else{
+      const startColor = new THREE.Color("purple");
+    const endColor = new THREE.Color("red");
+    const colorValue = new THREE.Color().lerpColors(endColor, startColor, heightValue);
+    return colorValue;
+    }
   }
   
   return (
@@ -67,9 +81,9 @@ function TextMesh() {
   const font = new FontLoader().parse(fontum);
 
   return(
-    <mesh rotation={[-.6, -0.2, -.3]} visible={false} position={[-2,-.5,0]} >
-      <textGeometry args={["@", {font, size: 4, height:.25}]}/>
-      <meshStandardMaterial attach="material" color={"white"}/>
+    <mesh rotation={[-.6, -0.2, -.3]} visible={false} position={[-4,-.5,0]} >
+      <textGeometry args={["@", {font, size: 5, height:.35}]}/>
+      <meshStandardMaterial attach="material"/>
     </mesh>
   )
   
@@ -88,18 +102,18 @@ function Ol(){
 
   return (
     <>
-    <instancedMesh receiveShadow  ref={instance} args={[null, null, 3000]} rotation={[-.8, -.1, -.3]}>
+    <instancedMesh needsUpdate={true} receiveShadow  ref={instance} args={[null, null, 6000]} rotation={[-.6, -.1, -.3]}>
           <sphereGeometry args={[.005, 16, 16]} />
-          <meshStandardMaterial attach="material" color={0x00ffaa} />
+          <meshStandardMaterial attach="material" color={"white"} />
         </instancedMesh>
         <SampledSurface instance={instance}>
           <TextMesh />
         </SampledSurface>
         <mesh ref={sphereCon}>
-        {Array.from({ length: 1500 }, (_, index) => {
-          const posx = (Math.random() - 0.5) * 13;
-          const posy = (Math.random() - 0.5) * 13;
-          const posz = (Math.random() - 0.5) * 13;
+        {Array.from({ length: 400 }, (_, index) => {
+          const posx = (Math.random() - 0.5) * 8;
+          const posy = (Math.random() - 0.5) * 8;
+          const posz = (Math.random() - 0.5) * 8;
           return (
             <mesh
               key={index}
@@ -108,7 +122,7 @@ function Ol(){
               receiveShadow 
               >
               <sphereGeometry args={[0.03, 16, 16]} />
-              <meshStandardMaterial color={"hsl(85.83333333333333, 63.716814159292035%, 44.31372549019608%)"} />
+              <meshStandardMaterial color={"purple"} />
             </mesh>
           );
         })}
@@ -126,7 +140,8 @@ function App() {
     <div className="container">
       <Canvas shadows>
         <PerspectiveCamera maxDistance={2} position={[0, 0, 10]} fov={175} />
-        <directionalLight castShadow intensity={3} color="white" position={[0, 0.1, .02]} />
+        {/* <spotLight intensity={1} color="white" position={[-1, 0, 2]} rotation={[1,1,-2]} /> */}
+        <spotLight intensity={4} distance={15} color="white" position={[0, 5, 1]} rotation={[0,0,0]} />
         <Ol/>
         
         <OrbitControls enablePan={false} enableDamping={false} />
