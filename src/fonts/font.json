@@ -1,0 +1,37 @@
+{
+  "glyphs": {
+    "@": {
+      "ha": 1242,
+      "x_min": 62,
+      "x_max": 1189,
+      "o": "m 1181 351 q 1097 84 1173 182 q 893 -14 1022 -14 q 729 90 770 -14 q 649 13 694 39 q 553 -13 603 -13 q 402 68 454 -13 q 363 286 351 150 q 417 486 374 397 q 527 623 460 574 q 667 671 593 671 q 768 657 724 671 q 871 598 812 643 l 836 216 q 913 82 823 82 q 1026 156 982 82 q 1075 349 1071 231 q 978 732 1086 599 q 653 865 870 865 q 417 798 520 865 q 254 606 315 732 q 188 319 194 480 q 227 38 180 156 q 371 -142 274 -81 q 609 -204 469 -204 q 728 -191 666 -204 q 833 -154 790 -177 l 859 -247 q 748 -291 818 -274 q 606 -307 677 -307 q 311 -234 434 -307 q 125 -23 187 -161 q 69 319 62 120 q 153 653 77 505 q 358 884 228 802 q 656 966 489 966 q 946 891 825 966 q 1128 678 1068 817 q 1181 351 1189 538 m 496 286 q 513 146 488 194 q 593 98 538 98 q 662 131 629 98 q 715 219 694 163 l 745 553 q 680 566 711 566 q 557 495 604 566 q 496 286 509 425 z "
+    }
+  },
+  "familyName": "Roboto Medium",
+  "ascender": 1289,
+  "descender": -339,
+  "underlinePosition": -102,
+  "underlineThickness": 68,
+  "boundingBox": { "yMin": -376, "xMin": -1017, "yMax": 1467, "xMax": 1625 },
+  "resolution": 1000,
+  "original_font_information": {
+    "format": 0,
+    "copyright": "Copyright 2011 Google Inc. All Rights Reserved.",
+    "fontFamily": "Roboto Medium",
+    "fontSubfamily": "Regular",
+    "uniqueID": "Roboto Medium",
+    "fullName": "Roboto Medium",
+    "version": "Version 2.137; 2017",
+    "postScriptName": "Roboto-Medium",
+    "trademark": "Roboto is a trademark of Google.",
+    "designer": "Google",
+    "manufacturerURL": "Google.com",
+    "designerURL": "Christian Robertson",
+    "licence": "Licensed under the Apache License, Version 2.0",
+    "licenceURL": "http://www.apache.org/licenses/LICENSE-2.0",
+    "preferredFamily": "Roboto",
+    "preferredSubfamily": "Medium"
+  },
+  "cssFontWeight": "normal",
+  "cssFontStyle": "normal"
+}
